@@ -1,27 +1,27 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { ProductService } from '../../../services/product.services';
-import { Product, ProductCategories, Products } from '../../../models/product.type';
 import { CommonModule } from '@angular/common';
-import { CategoryStateService } from '../../../services/category-state.service';
 import { RouterModule } from '@angular/router';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { Component, OnInit } from '@angular/core';
+
+// local imports
+import { ProductCategories } from '../../../models/product.type';
+import { ProductService } from '../../../services/product.services';
+import { CategoryStateService } from '../../../services/category-state.service';
 
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [
-    NzMenuModule,
-    CommonModule,
-    RouterModule,
-  ],
+  imports: [NzMenuModule, CommonModule, RouterModule],
   templateUrl: './categories.component.html',
-  styleUrl: './categories.component.css'
+  styleUrl: './categories.component.css',
 })
 export class CategoriesComponent implements OnInit {
-  constructor(private productSerivice: ProductService, private categoryState: CategoryStateService) { }
-  // productService: ProductService = inject(ProductService);
+  constructor(
+    private productService: ProductService,
+    private categoryState: CategoryStateService
+  ) {}
   productCategories: ProductCategories[] = [];
-  selectedCategory: string = 'all'; 
+  selectedCategory: string = 'all';
 
   ngOnInit() {
     this.getAllCategories();
@@ -30,18 +30,12 @@ export class CategoriesComponent implements OnInit {
     });
   }
   private getAllCategories() {
-    this.productSerivice.categories()
-      .subscribe((categories) => {
-        this.productCategories = categories;
-      });
+    this.productService.categories().subscribe((categories) => {
+      this.productCategories = categories;
+    });
   }
-  
+
   onSelectCategory(category: string) {
     this.categoryState.selectCategory(category);
   }
-
-
-
-
-
 }

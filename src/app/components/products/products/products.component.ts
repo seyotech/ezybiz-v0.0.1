@@ -33,6 +33,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   sortOrder: 'asc' | 'desc' = 'asc';
   totalProducts = 0;
   currentPage = 1;
+  queryParams = new URLSearchParams();
   private destroy$ = new Subject<void>(); // To clean up subscriptions
 
   products$ = this.productService.products$;
@@ -48,6 +49,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productService.total$.subscribe((total) => {
       this.totalProducts = total;
     });
+    if (this.limit !== undefined) this.queryParams.append('limit', String(this.limit));
+    if (this.skip !== undefined) this.queryParams.append('skip', String(this.skip));
+    if (this.sortOrder) this.queryParams.append('sortBy', 'title');
+    if (this.sortOrder) this.queryParams.append('order', this.sortOrder);
     this.route.queryParamMap.subscribe((params) => {
       this.search = params.get('search') || '';
       this.sortOrder = (params.get('order') as 'asc' | 'desc') || 'asc';
@@ -75,7 +80,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         .searchProducts(this.buildParams({ query: this.search }))
         .subscribe();
     } else {
-      this.productService.getProducts(this.buildParams());
+      this.productService.getProducts(this.queryParams.toString());
     }
   }
 
@@ -95,7 +100,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$)) // Ensure we unsubscribe when the component is destroyed
       .subscribe((category) => {
         if (category === 'all') {
-          this.productService.getProducts(this.buildParams());
+          this.productService.getProducts(this.queryParams.toString());
         } else {
           this.getProductsByCategory(category);
         }
@@ -104,7 +109,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   private getProductsByCategory(category: string) {
     this.productService
-      .getProductsByCategory(category)
+      .getProductsByCategory(category, this.queryParams.toString())
       .subscribe((products) => (this.products = products));
   }
   get totalPages(): number {
@@ -127,7 +132,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         })
         .subscribe();
     } else {
-      this.productService.getProducts(this.buildParams());
+      this.productService.getProducts(this.queryParams.toString());
     }
   }
 
