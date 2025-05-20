@@ -1,0 +1,64 @@
+<button nz-button nzType="default" (click)="showModal()">
+  <span>Edit</span>
+</button>
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="null"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle> Edit Product </ng-template>
+
+  <ng-template #modalContent>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      style="display: flex; flex-direction: column; gap: 1rem"
+    >
+      <input
+        type="text"
+        nz-input
+        nzSize="large"
+        placeholder="Product Name"
+        [formControl]="form.controls.title"
+      />
+      <textarea
+        type="text"
+        nz-input
+        nzSize="large"
+        placeholder="Product Description"
+        [formControl]="form.controls.description"
+        rows="5"
+      ></textarea>
+      <input
+        type="url"
+        nz-input
+        nzSize="large"
+        placeholder="Product Thumbnail URL"
+        [formControl]="form.controls.thumbnail"
+      />
+      <div
+        style="
+          display: flex;
+          justify-content: flex-end;
+          gap: 1rem;
+          margin-top: 2rem;
+        "
+      >
+        <button nz-button nzType="default" (click)="handleCancel()">
+          Cancel
+        </button>
+        <button
+          nz-button
+          type="submit"
+          nzType="primary"
+          (click)="handleOk()"
+          [nzLoading]="isConfirmLoading"
+        >
+          Edit Product
+        </button>
+      </div>
+    </form>
+  </ng-template>
+</nz-modal>

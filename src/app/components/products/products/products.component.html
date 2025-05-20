@@ -1,0 +1,52 @@
+<!-- <section>
+    <div *ngIf="(loading$ | async) && !(products$ | async)?.length">Loading...</div>
+    <div *ngIf="!(loading$ | async) || (products$ | async)?.length">
+      <app-topbar></app-topbar>
+  
+      <app-product
+        *ngFor="let product of products$ | async"
+        [product]="product"
+      ></app-product>
+
+      <div class="load-more-wrapper">
+        <button
+          class="load-more-button"
+          (click)="loadMore()"
+          [disabled]="loading$ | async"
+        >
+          <ng-container *ngIf="loading$ | async; else buttonText">
+            <span class="spinner"></span> Loading...
+          </ng-container>
+          <ng-template #buttonText>Load More</ng-template>
+        </button>
+      </div>
+    </div>
+  </section>
+   -->
+
+<section>
+  <div *ngIf="(loading$ | async) && !(products$ | async)?.length">
+    Loading...
+  </div>
+
+  <div *ngIf="!(loading$ | async) || (products$ | async)?.length">
+    <app-topbar></app-topbar>
+
+    <app-product
+      *ngFor="let product of products$ | async"
+      [product]="product"
+    ></app-product>
+
+    <!-- Pagination -->
+    <div class="pagination-wrapper">
+        <nz-pagination
+        [nzPageIndex]="currentPage"
+        [nzTotal]="totalProducts"
+        [nzPageSize]="limit"
+        [nzShowSizeChanger]="false"
+        (nzPageIndexChange)="onPageChange($event)"
+        class="pagination-wrapper"
+      ></nz-pagination>
+    </div>
+  </div>
+</section>

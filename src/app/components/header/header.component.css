@@ -1,0 +1,41 @@
+nz-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 120px;
+    height: 31px;
+    margin: 16px 30px 16px 0;
+    float: left;
+}
+
+.logo img {
+    float: left;
+}
+
+.header-menu {
+    line-height: 64px;
+}
+.header-menu a {
+    color: white;
+}
+
+
+.cart {
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    /* position: absolute;
+    top: 20px;
+    right: 60px;
+    display: flex;
+    align-items: center; */
+
+}
+
+.cart img {
+    width: 30px;
+    margin-left: 10px;
+}

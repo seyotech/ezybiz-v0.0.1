@@ -1,0 +1,14 @@
+<section>
+    <div class="product-area">
+        <div class="product-img">
+            <img nz-image width="200px" height="200px" [nzSrc]="product.thumbnail" alt="" />
+        </div>
+        <div class="product-details">
+            <h1>{{product.title}}</h1>
+            <p>{{product.description}}</p>
+            <strong>Price: {{product.price}}</strong> <br>
+            <strong *ngIf="product.count">Added: {{product.count}}</strong>
+        </div> 
+    </div>
+    <product-actions [product]="product"></product-actions>
+</section>

@@ -1,0 +1,38 @@
+<div class="billing-form-area">
+    <h2>Billing Address:</h2>
+    <form [formGroup]="billingForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group">
+          <input
+            id="name"
+            type="text"
+            placeholder="Enter your name"
+            nz-input
+            formControlName="name"
+          />
+          <input
+            id="address"
+            type="text"
+            placeholder="Enter your address"
+            nz-input
+            formControlName="address"
+          />
+        </div>
+        <p class="total">
+          Total: {{ totalAmount | async | currency: 'USD' }}
+        </p>
+      </div>
+  
+      <button
+        type="submit"
+        [disabled]="billingForm.invalid"
+        nz-button
+        nzSize="large"
+        nzType="primary"
+        class="checkout-button"
+      >
+        Checkout {{ totalAmount | async | currency: 'USD' }}
+      </button>
+    </form>
+  </div>
+  

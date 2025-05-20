@@ -1,0 +1,6 @@
+.filter-area {
+    display: flex;
+}
+.filter-area .filter, .sort {
+    margin: 0 10px;
+}

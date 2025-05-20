@@ -1,0 +1,63 @@
+<button *ngIf="user" nz-button nzType="primary" (click)="showModal()">
+  <span>Add Product</span>
+</button>
+<nz-modal
+  [(nzVisible)]="permission"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="null"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle> Add New Product </ng-template>
+
+  <ng-template #modalContent>
+    <form
+      [formGroup]="productForm"
+      (ngSubmit)="onSubmit()"
+      style="display: flex; flex-direction: column; gap: 1rem"
+    >
+      <input
+        type="text"
+        nz-input
+        nzSize="large"
+        placeholder="Product Name"
+        [formControl]="productForm.controls.title"
+      />
+      <textarea
+        type="text"
+        nz-input
+        nzSize="large"
+        placeholder="Product Description"
+        [formControl]="productForm.controls.description"
+        rows="5"
+      ></textarea>
+      <input
+        type="url"
+        nz-input
+        nzSize="large"
+        placeholder="Product Thumbnail URL"
+        [formControl]="productForm.controls.thumbnail || 'https://cdn.dummyjson.com/product-images/groceries/juice/1.webp'"
+      />
+      <div
+        style="
+          display: flex;
+          justify-content: flex-end;
+          gap: 1rem;
+          margin-top: 2rem;
+        "
+      >
+        <button nz-button nzType="default" (click)="handleCancel()">
+          Cancel
+        </button>
+        <button
+          nz-button
+          type="submit"
+          nzType="primary"
+          [nzLoading]="isLoading"
+        >
+          Add Product
+        </button>
+      </div>
+    </form>
+  </ng-template>
+</nz-modal>

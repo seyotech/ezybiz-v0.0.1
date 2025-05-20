@@ -1,0 +1,21 @@
+<!-- <li nz-menu-item nzSelected>Categories</li>
+<li nz-menu-item *ngFor="let category of productCategories" (click)="onSelectCategory(category.name)">
+  {{ category.name }}
+</li> -->
+<li
+  nz-menu-item
+  [nzSelected]="selectedCategory === 'all'" 
+  (click)="onSelectCategory('all')"
+>
+<a routerLink="/">All Categories</a>
+</li>
+
+<li
+  nz-menu-item
+  *ngFor="let category of productCategories"
+  [nzSelected]="selectedCategory === category.name"
+  (click)="onSelectCategory(category.name)"
+>
+<!-- {{ category.name }} -->
+ <a routerLink="/">{{ category.name }}</a>
+</li>

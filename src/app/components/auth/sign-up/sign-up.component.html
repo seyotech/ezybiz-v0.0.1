@@ -1,0 +1,61 @@
+<div class="login-root">
+    <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
+
+        <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+            <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+                <h1><a href="" rel="dofollow">Welcome to the ezybiz</a></h1>
+            </div>
+            <div class="formbg-outer">
+                <div class="formbg">
+                    <div class="formbg-inner padding-horizontal--48">
+                        <span class="padding-bottom--15">Sign up to your account</span>
+
+
+
+                        <form id="stripe-login" [formGroup]="regForm">
+
+                            <div class="field padding-bottom--24">
+                                <label for="email">UserName</label>
+                                <input formControlName="userName" type="text" name="username">
+                               
+                                
+                            </div>
+                            <div *ngIf="regForm.get('userName')?.touched &&   regForm.get('userName')?.errors " class="error-message">
+                                <span *ngIf="regForm.get('userName')?.errors?.['required']"> User name required </span>
+                                <span *ngIf="regForm.get('userName')?.errors?.['minlength']"> User name required min length 4 chanracter  </span>
+                                <span *ngIf="regForm.get('userName')?.errors?.['maxlength']"> User name required max length 8 chanracter  </span>
+                                <span *ngIf="regForm.get('userName')?.errors?.['whiteSpace']"> Please don't type any space as a username  </span>
+                                <span *ngIf="regForm.get('userName')?.errors?.['userExist']"> Please try with another one {{regForm.get('userName')?.value}} is already exists  </span>
+                            </div>
+                            <div class="field padding-bottom--24">
+                                <label for="email">Email</label>
+                                <input formControlName="email" type="email" name="email">
+                            </div>
+                            <div class="field padding-bottom--24">
+                                <div class="grid--50-50">
+                                    <label for="password">Password</label>
+
+                                </div>
+                                <input  formControlName="password" type="password" name="password">
+                            </div>
+                            <div class="">
+                                <label for="password">Already have an account? <span>
+                                    <a class="nav-link active " href="sign-in" >Please Login</a></span> </label>
+                            </div>
+                            <div *ngIf="error" class="error-message">
+                                {{ error }}
+                              </div>
+                            <div class="field padding-bottom--24">
+                                <button (click)="signUp()" type="submit" class="submit" name="submit">Signup </button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

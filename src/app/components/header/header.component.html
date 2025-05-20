@@ -1,0 +1,47 @@
+<nz-header>
+  <div class="logo">
+    <a routerLink="/"><img src="../assets/images/logo.png" alt="Logo" /></a>
+  </div>
+  <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
+    <li nz-menu-item nzSelected>
+      <app-cart><div class="cart">Cart <img src="../assets/images/cart.png" alt="Cart" /></div></app-cart>
+    </li>
+
+    <li *ngIf="isLoggedIn" nz-menu-item>
+      <a nz-dropdown [nzDropdownMenu]="menu">
+        <div class="cart"><span></span><img src="../assets/images/avatar.png" alt="Avatar" /></div>
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li nz-menu-item (click)="logout()">Logout</li>
+        </ul>
+      </nz-dropdown-menu>
+    </li>
+
+    <li *ngIf="!isLoggedIn" nz-menu-item>
+      <div class="cart"><a routerLink="/sign-in">Login</a></div>
+    </li>
+  </ul>
+</nz-header>
+
+<!-- <nz-header>
+    <div class="logo">
+      <a routerLink="/"><img src="../assets/images/logo.png" alt="" /></a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
+      <li nz-menu-item nzSelected>
+        <app-cart></app-cart>
+      </li>
+      <li *ngIf="user">
+        <div class="cart">
+          <span></span><img src="../assets/images/avatar.png" alt="" />
+        </div>
+      </li>
+      <li *ngIf="!user">
+        <div class="cart" routerLink="sign-in">
+          <a routerLink="sign-in">Login</a>
+        </div>
+      </li>
+    </ul>
+  </nz-header> -->
+  

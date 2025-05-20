@@ -1,0 +1,76 @@
+.billing-form-area {
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .billing-form-area h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Flex layout for inputs and total */
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .form-group {
+    flex: 1 1 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .form-group input {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  /* Total area */
+  .total {
+    flex: 1 1 35%;
+    text-align: right;
+    font-size: 20px;
+    font-weight: 500;
+    color: #1e90ff;
+    align-self: flex-start;
+    margin-top: 12px;
+  }
+  
+  .checkout-button {
+    align-self: center;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 320px;
+    font-size: 18px;
+    padding: 12px 0;
+    font-weight: bold;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+
+  }
+  
+  /* When disabled, make it visually muted */
+  .checkout-button[disabled] {
+    background-color: #1e90ff !important;
+    color: #fff !important;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  

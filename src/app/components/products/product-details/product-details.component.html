@@ -1,0 +1,13 @@
+<div class="product-area">
+    <div class="product-img">
+        <img nz-image width="200px" height="200px" [nzSrc]="product.thumbnail" alt="" />
+        <div>
+            <img nz-image width="120px" height="80px" *ngFor="let img of product.images" [nzSrc]="img" alt="">
+        </div>
+    </div>
+    <div class="product-details">
+        <h1>{{product.title}}</h1>
+        <p>{{product.description}}</p>
+    </div>
+
+</div>
